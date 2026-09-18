@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Калькулятор газобетона — CalcusPro</title>
+  <meta name="description" content="Расчёт количества и стоимости газобетонных блоков, клея и объёма кладки." />
+  <link rel="icon" href="/assets/img/logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="logo" href="/" aria-label="CalcusPro — на главную">
+        <img src="/assets/img/logo.svg" width="180" height="45" alt="CalcusPro" />
+      </a>
+      <nav class="nav" aria-label="Основное меню">
+        <a href="/">Главная</a>
+        <a href="/calculators/gazobeton/" aria-current="page">Газобетон</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page wrap">
+    <section class="hero">
+      <p class="eyebrow">Калькулятор</p>
+      <h1>Газобетон: количество и стоимость</h1>
+      <p>Введите размеры стен и блока — сервер посчитает объём, штуки, клей и сумму.</p>
+    </section>
+
+    <div class="panel">
+      <section class="card">
+        <h2>Исходные данные</h2>
+        <form id="gazobeton-form" novalidate>
+          <div class="grid-2">
+            <label>
+              Способ задания стен
+              <select id="mode" name="mode">
+                <option value="perimeter">Периметр</option>
+                <option value="box">Длина × ширина дома</option>
+              </select>
+            </label>
+            <label>
+              Высота стен, м
+              <input id="height_m" name="height_m" type="number" inputmode="decimal" min="0.5" max="30" step="0.01" value="3" required />
+            </label>
+          </div>
+
+          <div class="grid-2" style="margin-top:0.85rem">
+            <label class="mode-perimeter">
+              Периметр стен, м
+              <input id="perimeter_m" name="perimeter_m" type="number" inputmode="decimal" min="1" max="2000" step="0.01" value="40" />
+            </label>
+            <label class="mode-box" hidden>
+              Длина дома, м
+              <input id="length_m" name="length_m" type="number" inputmode="decimal" min="1" max="500" step="0.01" value="10" />
+            </label>
+            <label class="mode-box" hidden>
+              Ширина дома, м
+              <input id="width_m" name="width_m" type="number" inputmode="decimal" min="1" max="500" step="0.01" value="10" />
+            </label>
+            <label>
+              Толщина стены, мм
+              <input id="thickness_mm" name="thickness_mm" type="number" inputmode="numeric" min="50" max="600" step="1" value="300" required />
+            </label>
+          </div>
+
+          <div class="grid-2" style="margin-top:0.85rem">
+            <label>
+              Площадь проёмов, м²
+              <input id="openings_m2" name="openings_m2" type="number" inputmode="decimal" min="0" max="5000" step="0.01" value="12" />
+            </label>
+            <label>
+              Запас, %
+              <input id="reserve_pct" name="reserve_pct" type="number" inputmode="decimal" min="0" max="30" step="0.1" value="5" />
+            </label>
+          </div>
+
+          <div class="grid-2" style="margin-top:0.85rem">
+            <label>
+              Типоразмер блока
+              <select id="block_preset">
+                <option value="600x300x250" data-l="600" data-w="300" data-h="250" data-thickness="300" selected>600×300×250</option>
+                <option value="600x200x250" data-l="600" data-w="200" data-h="250" data-thickness="200">600×200×250</option>
+                <option value="600x400x250" data-l="600" data-w="400" data-h="250" data-thickness="400">600×400×250</option>
+                <option value="625x300x250" data-l="625" data-w="300" data-h="250" data-thickness="300">625×300×250</option>
+              </select>
+            </label>
+            <label>
+              Плотность D
+              <input id="density" name="density" type="number" inputmode="numeric" min="200" max="800" step="1" value="400" />
+            </label>
+          </div>
+
+          <div class="grid-2" style="margin-top:0.85rem">
+            <label>
+              Длина блока, мм
+              <input id="block_l_mm" name="block_l_mm" type="number" inputmode="numeric" min="100" max="900" step="1" value="600" required />
+            </label>
+            <label>
+              Ширина блока, мм
+              <input id="block_w_mm" name="block_w_mm" type="number" inputmode="numeric" min="50" max="600" step="1" value="300" required />
+            </label>
+            <label>
+              Высота блока, мм
+              <input id="block_h_mm" name="block_h_mm" type="number" inputmode="numeric" min="50" max="500" step="1" value="250" required />
+            </label>
+            <label>
+              Клей, кг/м²
+              <input id="glue_kg_m2" name="glue_kg_m2" type="number" inputmode="decimal" min="0" max="10" step="0.1" value="1.5" />
+            </label>
+          </div>
+
+          <div class="grid-2" style="margin-top:0.85rem">
+            <label>
+              Цена
+              <input id="price" name="price" type="number" inputmode="decimal" min="0" max="1000000" step="0.01" value="5500" required />
+            </label>
+            <label>
+              Единица цены
+              <select id="price_unit" name="price_unit">
+                <option value="m3" selected>₽ за м³</option>
+                <option value="piece">₽ за блок</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="actions">
+            <button class="btn" type="submit">Рассчитать</button>
+            <button class="btn btn-ghost" type="reset">Сбросить</button>
+          </div>
+          <p class="msg" id="form-error" role="alert" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="card" id="result-card" hidden>
+        <h2>Результат</h2>
+        <ul class="result-list">
+          <li><span>Площадь кладки</span><strong id="out-area">—</strong></li>
+          <li><span>Объём с запасом</span><strong id="out-volume">—</strong></li>
+          <li><span>Блоков без запаса</span><strong id="out-blocks">—</strong></li>
+          <li><span>Блоков с запасом</span><strong id="out-blocks-reserve">—</strong></li>
+          <li><span>Клей</span><strong id="out-glue">—</strong></li>
+          <li><span>Масса</span><strong id="out-mass">—</strong></li>
+        </ul>
+        <div class="total">
+          <span>Стоимость</span>
+          <strong id="out-cost">—</strong>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">© CalcusPro · calcuspro.ru</div>
+  </footer>
+
+  <script src="/assets/js/gazobeton.js" defer></script>
+</body>
+</html>

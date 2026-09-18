@@ -3,15 +3,79 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CalcusPro — калькуляторы</title>
-  <meta name="description" content="Онлайн-калькуляторы CalcusPro" />
-  <link rel="stylesheet" href="styles.css" />
+  <title>CalcusPro — калькуляторы для стройки</title>
+  <meta name="description" content="Онлайн-калькуляторы CalcusPro: газобетон, материалы и сметы." />
+  <link rel="icon" href="/assets/img/logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
 </head>
 <body>
-  <main class="hero">
-    <p class="brand">CalcusPro</p>
-    <h1>Калькуляторы скоро здесь</h1>
-    <p class="lead">Первая страница сайта. Раздел с калькуляторами появится в следующих обновлениях.</p>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="logo" href="/" aria-label="CalcusPro — на главную">
+        <img src="/assets/img/logo.svg" width="180" height="45" alt="CalcusPro" />
+      </a>
+      <nav class="nav" aria-label="Основное меню">
+        <a href="/" aria-current="page">Главная</a>
+        <a href="/calculators/gazobeton/">Газобетон</a>
+        <a href="#soon">Скоро</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page wrap">
+    <section class="hero">
+      <p class="eyebrow">CalcusPro</p>
+      <h1>Калькуляторы для стройки и смет</h1>
+      <p>Считайте материалы и стоимость без таблиц. Первый калькулятор — газобетонные блоки.</p>
+    </section>
+
+    <section class="tiles" aria-label="Калькуляторы">
+      <a class="tile" href="/calculators/gazobeton/">
+        <span class="tag">Готово</span>
+        <h2>Газобетон</h2>
+        <p>Количество блоков, объём, клей и стоимость по периметру или габаритам дома.</p>
+        <span class="cta">Открыть →</span>
+      </a>
+
+      <div class="tile is-disabled" id="soon" aria-disabled="true">
+        <span class="tag soon">Скоро</span>
+        <h2>Кирпич</h2>
+        <p>Расчёт рядовой и облицовочной кладки с запасом на бой.</p>
+        <span class="cta">В разработке</span>
+      </div>
+
+      <div class="tile is-disabled" aria-disabled="true">
+        <span class="tag soon">Скоро</span>
+        <h2>Фундамент</h2>
+        <p>Объём бетона ленты и плиты, арматура и опалубка.</p>
+        <span class="cta">В разработке</span>
+      </div>
+
+      <div class="tile is-disabled" aria-disabled="true">
+        <span class="tag soon">Скоро</span>
+        <h2>Кровля</h2>
+        <p>Площадь покрытия, крепёж и обрешётка по уклону.</p>
+        <span class="cta">В разработке</span>
+      </div>
+
+      <div class="tile is-disabled" aria-disabled="true">
+        <span class="tag soon">Скоро</span>
+        <h2>Утеплитель</h2>
+        <p>Плиты XPS/минвата, толщина и количество упаковок.</p>
+        <span class="cta">В разработке</span>
+      </div>
+
+      <div class="tile is-disabled" aria-disabled="true">
+        <span class="tag soon">Скоро</span>
+        <h2>Пиломатериал</h2>
+        <p>Объём бруса и доски, кубатура и стоимость партии.</p>
+        <span class="cta">В разработке</span>
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="wrap">© CalcusPro · calcuspro.ru</div>
+  </footer>
 </body>
 </html>
