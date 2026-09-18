@@ -1,81 +1,80 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CalcusPro — калькуляторы для стройки</title>
   <meta name="description" content="Онлайн-калькуляторы CalcusPro: газобетон, материалы и сметы." />
   <link rel="icon" href="/assets/img/logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/theme.css" />
 </head>
-<body>
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <a class="logo" href="/" aria-label="CalcusPro — на главную">
-        <img src="/assets/img/logo.svg" width="180" height="45" alt="CalcusPro" />
+<body class="cp-body text-gray-100 antialiased">
+  <nav class="cp-header" id="site-header">
+    <div class="cp-wrap py-3 flex items-center justify-between gap-4">
+      <a href="/" class="flex items-center gap-2">
+        <img src="/assets/img/logo.svg" class="h-11 w-auto max-w-[220px]" alt="CalcusPro" />
       </a>
-      <nav class="nav" aria-label="Основное меню">
-        <a href="/" aria-current="page">Главная</a>
-        <a href="/calculators/gazobeton/">Газобетон</a>
-        <a href="#soon">Скоро</a>
-      </nav>
+      <div class="flex items-center gap-1 text-sm font-medium">
+        <a href="/" class="px-3 py-2 rounded-lg bg-teal-500/15 text-teal-300" aria-current="page">Главная</a>
+        <a href="/calculators/gazobeton/" class="px-3 py-2 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-white">Газобетон</a>
+        <a href="#soon" class="px-3 py-2 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-white">Скоро</a>
+      </div>
     </div>
-  </header>
+  </nav>
 
-  <main class="page wrap">
-    <section class="hero">
-      <p class="eyebrow">CalcusPro</p>
-      <h1>Калькуляторы для стройки и смет</h1>
-      <p>Считайте материалы и стоимость без таблиц. Первый калькулятор — газобетонные блоки.</p>
+  <main class="cp-wrap py-10">
+    <section class="mb-10 max-w-2xl">
+      <p class="text-sm font-semibold uppercase tracking-wider text-teal-400 mb-2">CalcusPro</p>
+      <h1 class="text-3xl md:text-5xl font-bold text-white mb-3">Калькуляторы для стройки и смет</h1>
+      <p class="text-lg text-gray-400">Считайте материалы и стоимость без таблиц. Первый калькулятор — газобетонные блоки.</p>
     </section>
 
-    <section class="tiles" aria-label="Калькуляторы">
-      <a class="tile" href="/calculators/gazobeton/">
-        <span class="tag">Готово</span>
-        <h2>Газобетон</h2>
-        <p>Количество блоков, объём, клей и стоимость по периметру или габаритам дома.</p>
-        <span class="cta">Открыть →</span>
+    <section id="soon" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" aria-label="Калькуляторы">
+      <a href="/calculators/gazobeton/" class="block p-5 bg-gray-800 border border-gray-700 rounded-xl shadow hover:border-teal-500/50 hover:bg-gray-800/90 transition">
+        <span class="inline-flex mb-3 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-teal-500/15 text-teal-300">Готово</span>
+        <h2 class="text-xl font-semibold text-white mb-2">Газобетон</h2>
+        <p class="text-gray-400 text-sm mb-4">Объём, штуки и цена блоков по фундаменту, этажам и проёмам.</p>
+        <span class="text-teal-300 text-sm font-semibold">Открыть →</span>
       </a>
 
-      <div class="tile is-disabled" id="soon" aria-disabled="true">
-        <span class="tag soon">Скоро</span>
-        <h2>Кирпич</h2>
-        <p>Расчёт рядовой и облицовочной кладки с запасом на бой.</p>
-        <span class="cta">В разработке</span>
+      <div class="p-5 bg-gray-800/60 border border-gray-700 rounded-xl opacity-70" aria-disabled="true">
+        <span class="inline-flex mb-3 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-500/15 text-amber-300">Скоро</span>
+        <h2 class="text-xl font-semibold text-white mb-2">Кирпич</h2>
+        <p class="text-gray-400 text-sm">Расчёт рядовой и облицовочной кладки с запасом на бой.</p>
       </div>
 
-      <div class="tile is-disabled" aria-disabled="true">
-        <span class="tag soon">Скоро</span>
-        <h2>Фундамент</h2>
-        <p>Объём бетона ленты и плиты, арматура и опалубка.</p>
-        <span class="cta">В разработке</span>
+      <div class="p-5 bg-gray-800/60 border border-gray-700 rounded-xl opacity-70" aria-disabled="true">
+        <span class="inline-flex mb-3 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-500/15 text-amber-300">Скоро</span>
+        <h2 class="text-xl font-semibold text-white mb-2">Фундамент</h2>
+        <p class="text-gray-400 text-sm">Объём бетона ленты и плиты, арматура и опалубка.</p>
       </div>
 
-      <div class="tile is-disabled" aria-disabled="true">
-        <span class="tag soon">Скоро</span>
-        <h2>Кровля</h2>
-        <p>Площадь покрытия, крепёж и обрешётка по уклону.</p>
-        <span class="cta">В разработке</span>
+      <div class="p-5 bg-gray-800/60 border border-gray-700 rounded-xl opacity-70" aria-disabled="true">
+        <span class="inline-flex mb-3 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-500/15 text-amber-300">Скоро</span>
+        <h2 class="text-xl font-semibold text-white mb-2">Кровля</h2>
+        <p class="text-gray-400 text-sm">Площадь покрытия, крепёж и обрешётка по уклону.</p>
       </div>
 
-      <div class="tile is-disabled" aria-disabled="true">
-        <span class="tag soon">Скоро</span>
-        <h2>Утеплитель</h2>
-        <p>Плиты XPS/минвата, толщина и количество упаковок.</p>
-        <span class="cta">В разработке</span>
+      <div class="p-5 bg-gray-800/60 border border-gray-700 rounded-xl opacity-70" aria-disabled="true">
+        <span class="inline-flex mb-3 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-500/15 text-amber-300">Скоро</span>
+        <h2 class="text-xl font-semibold text-white mb-2">Утеплитель</h2>
+        <p class="text-gray-400 text-sm">Плиты XPS/минвата, толщина и количество упаковок.</p>
       </div>
 
-      <div class="tile is-disabled" aria-disabled="true">
-        <span class="tag soon">Скоро</span>
-        <h2>Пиломатериал</h2>
-        <p>Объём бруса и доски, кубатура и стоимость партии.</p>
-        <span class="cta">В разработке</span>
+      <div class="p-5 bg-gray-800/60 border border-gray-700 rounded-xl opacity-70" aria-disabled="true">
+        <span class="inline-flex mb-3 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-500/15 text-amber-300">Скоро</span>
+        <h2 class="text-xl font-semibold text-white mb-2">Пиломатериал</h2>
+        <p class="text-gray-400 text-sm">Объём бруса и доски, кубатура и стоимость партии.</p>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="wrap">© CalcusPro · calcuspro.ru</div>
+  <footer class="border-t border-gray-800 mt-10">
+    <div class="cp-wrap py-6 text-sm text-gray-500">© CalcusPro · calcuspro.ru</div>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+  <script src="/assets/js/site.js" defer></script>
 </body>
 </html>

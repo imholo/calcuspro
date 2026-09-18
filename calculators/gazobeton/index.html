@@ -1,160 +1,190 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Калькулятор газобетона — CalcusPro</title>
-  <meta name="description" content="Расчёт количества и стоимости газобетонных блоков, клея и объёма кладки." />
+  <title>Стоимость газобетона — CalcusPro</title>
+  <meta name="description" content="Расчёт объёма, количества и стоимости газобетонных блоков по фундаменту, этажам и проёмам." />
   <link rel="icon" href="/assets/img/logo.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/theme.css" />
 </head>
-<body>
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <a class="logo" href="/" aria-label="CalcusPro — на главную">
-        <img src="/assets/img/logo.svg" width="180" height="45" alt="CalcusPro" />
+<body class="cp-body antialiased">
+  <nav class="cp-header" id="site-header">
+    <div class="cp-wrap py-3 flex items-center justify-between gap-4">
+      <a href="/" class="flex items-center gap-2">
+        <img src="/assets/img/logo.svg" class="h-11 w-auto max-w-[220px]" alt="CalcusPro" />
       </a>
-      <nav class="nav" aria-label="Основное меню">
-        <a href="/">Главная</a>
-        <a href="/calculators/gazobeton/" aria-current="page">Газобетон</a>
-      </nav>
+      <div class="flex items-center gap-1 text-sm font-medium">
+        <a href="/" class="px-3 py-2 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-white">Главная</a>
+        <a href="/calculators/gazobeton/" class="px-3 py-2 rounded-lg bg-teal-500/15 text-teal-300" aria-current="page">Газобетон</a>
+      </div>
     </div>
-  </header>
+  </nav>
 
-  <main class="page wrap">
-    <section class="hero">
-      <p class="eyebrow">Калькулятор</p>
-      <h1>Газобетон: количество и стоимость</h1>
-      <p>Введите размеры стен и блока — сервер посчитает объём, штуки, клей и сумму.</p>
-    </section>
+  <main class="cp-wrap py-8">
+    <div class="mb-8 max-w-2xl">
+      <p class="text-sm font-semibold uppercase tracking-wider text-teal-400 mb-2">Калькулятор</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">Стоимость газобетона</h1>
+      <p class="text-gray-300">Объём, штуки и цена блоков по фундаменту, этажам и проёмам.</p>
+    </div>
 
-    <div class="panel">
-      <section class="card">
-        <h2>Исходные данные</h2>
-        <form id="gazobeton-form" novalidate>
-          <div class="grid-2">
-            <label>
-              Способ задания стен
-              <select id="mode" name="mode">
-                <option value="perimeter">Периметр</option>
-                <option value="box">Длина × ширина дома</option>
-              </select>
-            </label>
-            <label>
-              Высота стен, м
-              <input id="height_m" name="height_m" type="number" inputmode="decimal" min="0.5" max="30" step="0.01" value="3" required />
-            </label>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <section class="cp-panel">
+        <h2 class="text-lg font-semibold text-white mb-5">Исходные данные</h2>
+        <form id="gazobeton-form" class="space-y-5" novalidate>
+
+          <fieldset>
+            <legend class="cp-label">Способ задания стен</legend>
+            <ul class="cp-radios">
+              <li>
+                <label class="cp-radio-item" for="wall_mode_box">
+                  <input id="wall_mode_box" type="radio" value="box" name="wall_mode" class="cp-radio" checked />
+                  Ширина × длина
+                </label>
+              </li>
+              <li>
+                <label class="cp-radio-item" for="wall_mode_perimeter">
+                  <input id="wall_mode_perimeter" type="radio" value="perimeter" name="wall_mode" class="cp-radio" />
+                  Периметр
+                </label>
+              </li>
+            </ul>
+          </fieldset>
+
+          <div class="cp-fields">
+            <div class="cp-field-wrap" id="wrap-width">
+              <label class="cp-label" for="width_m">Ширина, м</label>
+              <input id="width_m" name="width_m" class="decimal cp-input" type="text" inputmode="decimal" autocomplete="off" value="10" />
+            </div>
+            <div class="cp-field-wrap" id="wrap-length">
+              <label class="cp-label" for="length_m">Длина, м</label>
+              <input id="length_m" name="length_m" class="decimal cp-input" type="text" inputmode="decimal" autocomplete="off" value="12" />
+            </div>
+            <div class="cp-field-wrap" id="wrap-perimeter">
+              <label class="cp-label" for="perimeter_m">Периметр стен, м</label>
+              <input id="perimeter_m" name="perimeter_m" class="decimal cp-input" type="text" inputmode="decimal" autocomplete="off" value="44" />
+            </div>
+            <div class="cp-field-wrap">
+              <label class="cp-label" for="height1_m">Высота 1 этажа, м</label>
+              <input id="height1_m" name="height1_m" class="decimal cp-input" type="text" inputmode="decimal" autocomplete="off" value="3" required />
+            </div>
+            <div class="cp-field-wrap">
+              <label class="cp-label" for="height2_m">Высота 2 этажа, м</label>
+              <input id="height2_m" name="height2_m" class="decimal cp-input" type="text" inputmode="decimal" autocomplete="off" value="2,5" />
+            </div>
+          </div>
+          <p class="cp-hint">Для одноэтажного: высота 2 этажа = 0. Дробные значения: 11,5 или 11.5. В режиме «Ширина × длина» периметр считается сам.</p>
+
+          <fieldset>
+            <legend class="cp-label">Плотность</legend>
+            <ul class="cp-radios">
+              <li><label class="cp-radio-item" for="density_300"><input id="density_300" type="radio" value="300" name="density" class="cp-radio" /> D300</label></li>
+              <li><label class="cp-radio-item" for="density_400"><input id="density_400" type="radio" value="400" name="density" class="cp-radio" checked /> D400</label></li>
+              <li><label class="cp-radio-item" for="density_500"><input id="density_500" type="radio" value="500" name="density" class="cp-radio" /> D500</label></li>
+              <li><label class="cp-radio-item" for="density_600"><input id="density_600" type="radio" value="600" name="density" class="cp-radio" /> D600</label></li>
+            </ul>
+          </fieldset>
+
+          <div class="cp-fields">
+            <div class="cp-field-wrap">
+              <label class="cp-label" for="block_t_mm">Толщина блока, мм</label>
+              <input id="block_t_mm" name="block_t_mm" type="number" inputmode="numeric" min="50" max="600" step="1" value="300" required class="cp-input" />
+            </div>
+            <div class="cp-field-wrap">
+              <label class="cp-label" for="block_h_mm">Высота блока, мм</label>
+              <input id="block_h_mm" name="block_h_mm" type="number" inputmode="numeric" min="50" max="500" step="1" value="250" required class="cp-input" />
+            </div>
+            <div class="cp-field-wrap">
+              <label class="cp-label" for="block_l_mm">Длина блока, мм</label>
+              <input id="block_l_mm" name="block_l_mm" type="number" inputmode="numeric" min="100" max="900" step="1" value="600" required class="cp-input" />
+            </div>
+            <div class="cp-field-wrap">
+              <label class="cp-label" for="waste_pct">Запас, %</label>
+              <input id="waste_pct" name="waste_pct" class="decimal cp-input" type="text" inputmode="decimal" autocomplete="off" value="5" />
+            </div>
           </div>
 
-          <div class="grid-2" style="margin-top:0.85rem">
-            <label class="mode-perimeter">
-              Периметр стен, м
-              <input id="perimeter_m" name="perimeter_m" type="number" inputmode="decimal" min="1" max="2000" step="0.01" value="40" />
-            </label>
-            <label class="mode-box" hidden>
-              Длина дома, м
-              <input id="length_m" name="length_m" type="number" inputmode="decimal" min="1" max="500" step="0.01" value="10" />
-            </label>
-            <label class="mode-box" hidden>
-              Ширина дома, м
-              <input id="width_m" name="width_m" type="number" inputmode="decimal" min="1" max="500" step="0.01" value="10" />
-            </label>
-            <label>
-              Толщина стены, мм
-              <input id="thickness_mm" name="thickness_mm" type="number" inputmode="numeric" min="50" max="600" step="1" value="300" required />
-            </label>
+          <fieldset>
+            <legend class="cp-label">Нанесение</legend>
+            <ul class="cp-radios">
+              <li><label class="cp-radio-item" for="binder_glue"><input id="binder_glue" type="radio" value="glue" name="binder_mode" class="cp-radio" checked /> Клей</label></li>
+              <li><label class="cp-radio-item" for="binder_cps"><input id="binder_cps" type="radio" value="cps" name="binder_mode" class="cp-radio" /> ЦПС</label></li>
+              <li><label class="cp-radio-item" for="binder_foam"><input id="binder_foam" type="radio" value="foam" name="binder_mode" class="cp-radio" /> Клей-пена</label></li>
+            </ul>
+          </fieldset>
+          <p class="cp-hint"><span class="text-gray-400">Считаем:</span> <strong id="binder-material-name" class="text-teal-300">клей для газобетона</strong></p>
+          <p id="binder-hint" class="cp-hint">Клей: шов 2–3 мм, ~25 кг/м³, мешок 25 кг.</p>
+
+          <div class="cp-price-block">
+            <h3>Цены</h3>
+            <div class="cp-fields">
+              <div class="cp-field-wrap">
+                <label class="cp-label" for="price_mode">Единица цены блоков</label>
+                <select id="price_mode" name="price_mode" class="cp-input">
+                  <option value="m3" selected>за м³</option>
+                  <option value="pallet">за палету</option>
+                </select>
+              </div>
+              <div class="cp-field-wrap">
+                <label class="cp-label" for="price">Цена блоков, ₽</label>
+                <input id="price" name="price" class="decimal cp-input" type="text" inputmode="decimal" autocomplete="off" value="5000" required />
+              </div>
+              <div class="cp-field-wrap" id="wrap-binder-price">
+                <label class="cp-label" for="binder_price"><span id="binder-price-text">Цена мешка клея, ₽</span></label>
+                <input id="binder_price" name="binder_price" class="decimal cp-input" type="text" inputmode="decimal" autocomplete="off" value="450" />
+              </div>
+            </div>
           </div>
 
-          <div class="grid-2" style="margin-top:0.85rem">
-            <label>
-              Площадь проёмов, м²
-              <input id="openings_m2" name="openings_m2" type="number" inputmode="decimal" min="0" max="5000" step="0.01" value="12" />
-            </label>
-            <label>
-              Запас, %
-              <input id="reserve_pct" name="reserve_pct" type="number" inputmode="decimal" min="0" max="30" step="0.1" value="5" />
-            </label>
+          <div>
+            <h3 class="text-base font-semibold text-white mb-3">Проёмы (окна и двери)</h3>
+            <div id="openings" class="cp-openings"></div>
           </div>
 
-          <div class="grid-2" style="margin-top:0.85rem">
-            <label>
-              Типоразмер блока
-              <select id="block_preset">
-                <option value="600x300x250" data-l="600" data-w="300" data-h="250" data-thickness="300" selected>600×300×250</option>
-                <option value="600x200x250" data-l="600" data-w="200" data-h="250" data-thickness="200">600×200×250</option>
-                <option value="600x400x250" data-l="600" data-w="400" data-h="250" data-thickness="400">600×400×250</option>
-                <option value="625x300x250" data-l="625" data-w="300" data-h="250" data-thickness="300">625×300×250</option>
-              </select>
-            </label>
-            <label>
-              Плотность D
-              <input id="density" name="density" type="number" inputmode="numeric" min="200" max="800" step="1" value="400" />
-            </label>
+          <div class="flex flex-wrap gap-3 pt-1">
+            <button id="add-opening" type="button" class="text-teal-300 hover:text-white border border-teal-500/40 hover:bg-teal-500/10 font-medium rounded-lg text-sm px-5 py-2.5">+ проём</button>
+            <button type="submit" class="text-white bg-teal-600 hover:bg-teal-700 font-medium rounded-lg text-sm px-5 py-2.5">Рассчитать</button>
           </div>
-
-          <div class="grid-2" style="margin-top:0.85rem">
-            <label>
-              Длина блока, мм
-              <input id="block_l_mm" name="block_l_mm" type="number" inputmode="numeric" min="100" max="900" step="1" value="600" required />
-            </label>
-            <label>
-              Ширина блока, мм
-              <input id="block_w_mm" name="block_w_mm" type="number" inputmode="numeric" min="50" max="600" step="1" value="300" required />
-            </label>
-            <label>
-              Высота блока, мм
-              <input id="block_h_mm" name="block_h_mm" type="number" inputmode="numeric" min="50" max="500" step="1" value="250" required />
-            </label>
-            <label>
-              Клей, кг/м²
-              <input id="glue_kg_m2" name="glue_kg_m2" type="number" inputmode="decimal" min="0" max="10" step="0.1" value="1.5" />
-            </label>
-          </div>
-
-          <div class="grid-2" style="margin-top:0.85rem">
-            <label>
-              Цена
-              <input id="price" name="price" type="number" inputmode="decimal" min="0" max="1000000" step="0.01" value="5500" required />
-            </label>
-            <label>
-              Единица цены
-              <select id="price_unit" name="price_unit">
-                <option value="m3" selected>₽ за м³</option>
-                <option value="piece">₽ за блок</option>
-              </select>
-            </label>
-          </div>
-
-          <div class="actions">
-            <button class="btn" type="submit">Рассчитать</button>
-            <button class="btn btn-ghost" type="reset">Сбросить</button>
-          </div>
-          <p class="msg" id="form-error" role="alert" aria-live="polite"></p>
+          <p class="msg text-sm text-red-400 min-h-[1.25rem]" id="form-error" role="alert" aria-live="polite"></p>
         </form>
       </section>
 
-      <section class="card" id="result-card" hidden>
-        <h2>Результат</h2>
-        <ul class="result-list">
-          <li><span>Площадь кладки</span><strong id="out-area">—</strong></li>
-          <li><span>Объём с запасом</span><strong id="out-volume">—</strong></li>
-          <li><span>Блоков без запаса</span><strong id="out-blocks">—</strong></li>
-          <li><span>Блоков с запасом</span><strong id="out-blocks-reserve">—</strong></li>
-          <li><span>Клей</span><strong id="out-glue">—</strong></li>
-          <li><span>Масса</span><strong id="out-mass">—</strong></li>
-        </ul>
-        <div class="total">
-          <span>Стоимость</span>
-          <strong id="out-cost">—</strong>
+      <section id="result-card" class="cp-panel cp-result h-fit" hidden>
+        <h2 class="text-lg font-semibold text-white mb-4">Итого с запасом</h2>
+        <div class="flex items-baseline justify-between gap-3 p-4 mb-4 rounded-lg bg-teal-500/10 border border-teal-500/30">
+          <span class="text-gray-300">Стоимость</span>
+          <strong id="out-cost" class="text-2xl text-teal-300">—</strong>
         </div>
+        <dl class="divide-y divide-gray-700 text-sm">
+          <div class="flex justify-between gap-3 py-2.5"><dt>Объём</dt><dd id="out-vol">—</dd></div>
+          <div class="flex justify-between gap-3 py-2.5"><dt>Чистый объём</dt><dd id="out-net">—</dd></div>
+          <div class="flex justify-between gap-3 py-2.5"><dt>Блоки</dt><dd id="out-pcs">—</dd></div>
+          <div class="flex justify-between gap-3 py-2.5"><dt>Палеты</dt><dd id="out-pallets">—</dd></div>
+          <div class="flex justify-between gap-3 py-2.5"><dt>Масса</dt><dd id="out-mass">—</dd></div>
+          <div class="flex justify-between gap-3 py-2.5"><dt>Цена блоков за м³</dt><dd id="out-blocks-m3">—</dd></div>
+          <div class="flex justify-between gap-3 py-2.5"><dt>Блоки, сумма</dt><dd id="out-blocks-cost">—</dd></div>
+          <div class="flex justify-between gap-3 py-2.5"><dt id="out-binder-qty-label">Клей, расход</dt><dd id="out-binder-qty">—</dd></div>
+          <div class="flex justify-between gap-3 py-2.5"><dt id="out-binder-packs-label">Мешки по 25 кг</dt><dd id="out-binder-packs">—</dd></div>
+          <div class="flex justify-between gap-3 py-2.5"><dt id="out-binder-unit-label">Цена за мешок</dt><dd id="out-binder-unit">—</dd></div>
+          <div class="flex justify-between gap-3 py-2.5"><dt id="out-binder-cost-label">Клей, сумма</dt><dd id="out-binder-cost">—</dd></div>
+        </dl>
+        <p class="cp-hint mt-4" id="out-hint"></p>
+        <div class="mt-5 flex flex-wrap gap-2" id="export-actions">
+          <button type="button" id="export-xls" class="cp-btn-secondary" disabled>Excel (.xls)</button>
+          <button type="button" id="export-pdf" class="cp-btn-secondary" disabled>PDF</button>
+        </div>
+        <p class="cp-hint mt-2" id="export-error" hidden></p>
       </section>
     </div>
   </main>
 
-  <footer class="site-footer">
-    <div class="wrap">© CalcusPro · calcuspro.ru</div>
+  <footer class="border-t border-gray-800 mt-10">
+    <div class="cp-wrap py-6 text-sm text-gray-500">© CalcusPro · calcuspro.ru</div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+  <script src="/assets/js/site.js" defer></script>
   <script src="/assets/js/gazobeton.js" defer></script>
 </body>
 </html>
